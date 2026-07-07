@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "test@example.com",
+      "password": "123456789",
+      "name": "Test User"
+    }
+  ],
+  "categories": [
+    { "id": 1, "name": "Salary", "type": "income", "color": "#4CAF50", "icon": "attach_money" },
+    { "id": 2, "name": "Freelance", "type": "income", "color": "#8BC34A", "icon": "work" },
+    { "id": 3, "name": "Groceries", "type": "expense", "color": "#F44336", "icon": "shopping_cart" },
+    { "id": 4, "name": "Rent", "type": "expense", "color": "#E91E63", "icon": "home" },
+    { "id": 5, "name": "Transport", "type": "expense", "color": "#FF9800", "icon": "directions_bus" }
+  ],
+  "transactions": [
+    {
+      "id": 1,
+      "userId": 1,
+      "categoryId": 3,
+      "type": "expense",
+      "amount": 450,
+      "date": "2026-06-15",
+      "description": "Weekly groceries",
+      "receiptUrl": ""
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "categoryId": 1,
+      "type": "income",
+      "amount": 45000,
+      "date": "2026-06-01",
+      "description": "June salary",
+      "receiptUrl": ""
+    }
+  ]
+}
