@@ -1,5 +1,5 @@
 .dashboard-container {
-  padding: 24px;
+  padding: 32px 24px;
   max-width: 900px;
   margin: 0 auto;
 }
@@ -8,71 +8,66 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 
   h1 {
     margin: 0;
     font-weight: 500;
-    font-size: 22px;
-    color: #212121;
+    font-size: 20px;
+    color: #1a1a1a;
+    letter-spacing: -0.2px;
   }
 }
 
 .summary-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  gap: 16px;
   margin-bottom: 32px;
 }
 
 .summary-card {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 16px;
+  gap: 8px;
+  padding: 20px;
   background: #ffffff;
   border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  box-shadow: none;
+  border-radius: 8px;
 
   .label {
-    font-size: 13px;
-    color: #757575;
-    font-weight: 400;
+    font-size: 12px;
+    color: #9e9e9e;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
   }
 
   .value {
     font-size: 22px;
     font-weight: 600;
-    color: #212121;
-  }
-
-  &.income .value {
-    color: #61af65;
-  }
-
-  &.expense .value {
-    color: #c62828;
+    color: #1a1a1a;
   }
 }
 
 .entries-section {
+  background: #ffffff;
   border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  padding: 16px;
+  border-radius: 8px;
+  padding: 20px;
 
   h3 {
     margin: 0 0 12px 0;
     font-weight: 500;
-    font-size: 16px;
-    color: #212121;
+    font-size: 14px;
+    color: #1a1a1a;
   }
 }
 
 .empty-state {
   color: #9e9e9e;
-  font-style: italic;
+  font-size: 14px;
   text-align: center;
-  padding: 24px 0;
+  padding: 20px 0;
   margin: 0;
 }
