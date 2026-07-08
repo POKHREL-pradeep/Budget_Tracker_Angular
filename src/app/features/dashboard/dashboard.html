@@ -1,0 +1,25 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <h1>Budget Tracker</h1>
+    <button mat-stroked-button color="warn" (click)="logout()">Logout</button>
+  </header>
+  <section class="summary-cards">
+    <div class="summary-card">
+      <span class="label">Balance</span>
+      <span class="value">Nu.0</span>
+    </div>
+    <div class="summary-card income">
+      <span class="label">Income</span>
+      <span class="value">Nu.0</span>
+    </div>
+    <div class="summary-card expense">
+      <span class="label">Expenses</span>
+      <span class="value">Nu.0</span>
+    </div>
+  </section>
+
+  <section class="entries-section">
+    <h3>Recent Entries</h3>
+    <p class="empty-state">No entries yet.</p>
+  </section>
+</div>
