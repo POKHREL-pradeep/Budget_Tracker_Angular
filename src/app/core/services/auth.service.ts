@@ -44,7 +44,7 @@ export class AuthService {
   }
 
   private setSession(user: User): void {
-    // Fake JWT — in a real app this comes from the backend
+   
     const fakeToken = btoa(`${user.email}:${Date.now()}`);
     localStorage.setItem(TOKEN_KEY, fakeToken);
     localStorage.setItem(USER_KEY, JSON.stringify(user));
