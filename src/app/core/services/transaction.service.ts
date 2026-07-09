@@ -52,8 +52,6 @@ export class TransactionService {
   }
 
   deleteMany(ids: number[]): Observable<void[]> {
-    // json-server has no native bulk-delete endpoint, so we fire
-    // multiple DELETE requests and combine them into one Observable
     const requests = ids.map((id) => this.delete(id));
     return forkJoin(requests);
   }
