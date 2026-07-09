@@ -19,6 +19,11 @@
   }
 }
 
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+
 .summary-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
