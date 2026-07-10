@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, OnInit, ViewChild, inject, DestroyRef, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -11,12 +11,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
-import { forkJoin } from 'rxjs';
+import { finalize, forkJoin, merge } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Transaction } from '../../../core/models/transaction.model';
 import { Category } from '../../../core/models/category.model';
 import { TransactionService } from '../../../core/services/transaction.service';
 import { CategoryService } from '../../../core/services/category.service';
-
+import { TranslocoModule } from '@jsverse/transloco';
 @Component({
   selector: 'app-transaction-list',
   standalone: true,
@@ -32,6 +33,7 @@ import { CategoryService } from '../../../core/services/category.service';
     MatSelectModule,
     MatProgressSpinnerModule,
     MatIconModule,
+    TranslocoModule,
   ],
   templateUrl: './transaction-list.html',
   styleUrl: './transaction-list.scss',
@@ -40,6 +42,8 @@ export class TransactionList implements OnInit {
   private transactionService = inject(TransactionService);
   private categoryService = inject(CategoryService);
   private router = inject(Router);
+  private destroyRef = inject(DestroyRef);
+  private cdr = inject(ChangeDetectorRef);
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -65,12 +69,11 @@ export class TransactionList implements OnInit {
       return typeMatch && categoryMatch;
     };
 
-    this.typeFilter.valueChanges.subscribe(() => {
-      this.dataSource.filter = String(Date.now());
-    });
-    this.categoryFilter.valueChanges.subscribe(() => {
-      this.dataSource.filter = String(Date.now());
-    });
+    merge(this.typeFilter.valueChanges, this.categoryFilter.valueChanges)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.dataSource.filter = String(Date.now());
+      });
   }
 
   getCategoryName(categoryId: number): string {
@@ -95,23 +98,24 @@ export class TransactionList implements OnInit {
     forkJoin({
       transactions: this.transactionService.getAll(),
       categories: this.categoryService.getAll(),
-    }).subscribe({
-      next: ({ transactions, categories }) => {
-        console.log('categories:', categories);
-        console.log('transactions:', transactions);
-        this.categories = categories;
-        this.dataSource.data = transactions;
-        this.isLoading = false;
-
-        setTimeout(() => {
+    })
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+          this.cdr.detectChanges();
           this.dataSource.sort = this.sort;
           this.dataSource.paginator = this.paginator;
-        });
-      },
-      error: (err) => {
-        console.error('loadData error:', err);
-        this.isLoading = false;
-      },
-    });
+        }),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe({
+        next: ({ transactions, categories }) => {
+          this.categories = categories;
+          this.dataSource.data = transactions;
+        },
+        error: (err) => {
+          console.error('loadData error:', err);
+        },
+      });
   }
 }

@@ -1,0 +1,66 @@
+{
+  "dashboard": {
+    "title": "Budgetverfolgung",
+    "balance": "Kontostand",
+    "income": "Einkommen",
+    "expenses": "Ausgaben",
+    "recentEntries": "Letzte Einträge",
+    "noEntries": "Noch keine Einträge.",
+    "logout": "Abmelden",
+    "transactions": "Transaktionen"
+  },
+  "transactions": {
+    "title": "Transaktionen",
+    "addNew": "Transaktion hinzufügen",
+    "empty": "Noch keine Transaktionen — fügen Sie eine hinzu!",
+    "date": "Datum",
+    "description": "Beschreibung",
+    "category": "Kategorie",
+    "type": "Typ",
+    "amount": "Betrag",
+    "actions": "Aktionen",
+    "income": "Einkommen",
+    "expense": "Ausgabe",
+    "all": "Alle",
+    "filterType": "Typ",
+    "filterCategory": "Kategorie"
+  },
+  "transactionForm": {
+    "newTitle": "Neue Transaktion",
+    "editTitle": "Transaktion bearbeiten",
+    "type": "Typ",
+    "amount": "Betrag",
+    "category": "Kategorie",
+    "date": "Datum",
+    "description": "Beschreibung",
+    "receiptUrl": "Beleg-URL (optional)",
+    "cancel": "Abbrechen",
+    "add": "Transaktion hinzufügen",
+    "update": "Aktualisieren",
+    "saving": "Wird gespeichert..."
+  },
+  "login": {
+    "title": "Anmelden",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "submit": "Anmelden",
+    "loggingIn": "Wird angemeldet...",
+    "emailRequired": "E-Mail ist erforderlich",
+    "emailInvalid": "Geben Sie eine gültige E-Mail ein",
+    "passwordRequired": "Passwort ist erforderlich",
+    "passwordMinLength": "Das Passwort muss mindestens 6 Zeichen lang sein"
+  },
+  "validation": {
+    "required": "Dieses Feld ist erforderlich",
+    "amountInvalid": "Betrag muss größer als 0 sein",
+    "amountExceeded": "Betrag darf 1.000.000 nicht überschreiten",
+    "futureExpenseDate": "Ausgabendatum darf nicht in der Zukunft liegen"
+  },
+  "language": {
+    "select": "Sprache",
+    "en": "English",
+    "de": "Deutsch",
+    "fr": "Français",
+    "ne": "नेपाली"
+  }
+}

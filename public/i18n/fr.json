@@ -1,0 +1,66 @@
+{
+  "dashboard": {
+    "title": "Suivi de Budget",
+    "balance": "Solde",
+    "income": "Revenus",
+    "expenses": "Dépenses",
+    "recentEntries": "Entrées Récentes",
+    "noEntries": "Aucune entrée pour l'instant.",
+    "logout": "Déconnexion",
+    "transactions": "Transactions"
+  },
+  "transactions": {
+    "title": "Transactions",
+    "addNew": "Ajouter une Transaction",
+    "empty": "Aucune transaction pour l'instant — ajoutez-en une!",
+    "date": "Date",
+    "description": "Description",
+    "category": "Catégorie",
+    "type": "Type",
+    "amount": "Montant",
+    "actions": "Actions",
+    "income": "Revenu",
+    "expense": "Dépense",
+    "all": "Tous",
+    "filterType": "Type",
+    "filterCategory": "Catégorie"
+  },
+  "transactionForm": {
+    "newTitle": "Nouvelle Transaction",
+    "editTitle": "Modifier la Transaction",
+    "type": "Type",
+    "amount": "Montant",
+    "category": "Catégorie",
+    "date": "Date",
+    "description": "Description",
+    "receiptUrl": "URL du Reçu (optionnel)",
+    "cancel": "Annuler",
+    "add": "Ajouter une Transaction",
+    "update": "Mettre à jour",
+    "saving": "Enregistrement..."
+  },
+  "login": {
+    "title": "Connexion",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "submit": "Se connecter",
+    "loggingIn": "Connexion en cours...",
+    "emailRequired": "L'e-mail est requis",
+    "emailInvalid": "Entrez un e-mail valide",
+    "passwordRequired": "Le mot de passe est requis",
+    "passwordMinLength": "Le mot de passe doit comporter au moins 6 caractères"
+  },
+  "validation": {
+    "required": "Ce champ est requis",
+    "amountInvalid": "Le montant doit être supérieur à 0",
+    "amountExceeded": "Le montant ne peut pas dépasser 1 000 000",
+    "futureExpenseDate": "La date de dépense ne peut pas être dans le futur"
+  },
+  "language": {
+    "select": "Langue",
+    "en": "English",
+    "de": "Deutsch",
+    "fr": "Français",
+    "ne": "नेपाली"
+  }
+}

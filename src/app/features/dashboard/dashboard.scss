@@ -1,5 +1,7 @@
+@use '../../../styles/variables' as vars;
+
 .dashboard-container {
-  padding: 32px 24px;
+  padding: vars.$spacing-xl vars.$spacing-lg;
   max-width: 900px;
   margin: 0 auto;
 }
@@ -8,41 +10,46 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 32px;
+  margin-bottom: vars.$spacing-xl;
 
   h1 {
     margin: 0;
     font-weight: 500;
     font-size: 20px;
-    color: #1a1a1a;
+    color: vars.$color-text-primary;
     letter-spacing: -0.2px;
   }
 }
 
+.lang-select {
+  width: 130px;
+  font-size: 14px;
+}
+
 .header-actions {
   display: flex;
-  gap: 8px;
+  gap: vars.$spacing-sm;
 }
 
 .summary-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-bottom: 32px;
+  gap: vars.$spacing-md;
+  margin-bottom: vars.$spacing-xl;
 }
 
 .summary-card {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: vars.$spacing-sm;
   padding: 20px;
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background: vars.$color-bg-white;
+  border: 1px solid vars.$color-border;
+  border-radius: vars.$border-radius;
 
   .label {
     font-size: 12px;
-    color: #9e9e9e;
+    color: vars.$color-text-muted;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.4px;
@@ -51,26 +58,26 @@
   .value {
     font-size: 22px;
     font-weight: 600;
-    color: #1a1a1a;
+    color: vars.$color-text-primary;
   }
 }
 
 .entries-section {
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background: vars.$color-bg-white;
+  border: 1px solid vars.$color-border;
+  border-radius: vars.$border-radius;
   padding: 20px;
 
   h3 {
     margin: 0 0 12px 0;
     font-weight: 500;
     font-size: 14px;
-    color: #1a1a1a;
+    color: vars.$color-text-primary;
   }
 }
 
 .empty-state {
-  color: #9e9e9e;
+  color: vars.$color-text-muted;
   font-size: 14px;
   text-align: center;
   padding: 20px 0;

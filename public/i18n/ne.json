@@ -1,0 +1,66 @@
+{
+  "dashboard": {
+    "title": "बजेट ट्र्याकर",
+    "balance": "ब्यालेन्स",
+    "income": "आम्दानी",
+    "expenses": "खर्च",
+    "recentEntries": "हालका प्रविष्टिहरू",
+    "noEntries": "अहिलेसम्म कुनै प्रविष्टि छैन।",
+    "logout": "लगआउट",
+    "transactions": "कारोबारहरू"
+  },
+  "transactions": {
+    "title": "कारोबारहरू",
+    "addNew": "कारोबार थप्नुहोस्",
+    "empty": "अहिलेसम्म कुनै कारोबार छैन — एउटा थप्नुहोस्!",
+    "date": "मिति",
+    "description": "विवरण",
+    "category": "श्रेणी",
+    "type": "प्रकार",
+    "amount": "रकम",
+    "actions": "कार्यहरू",
+    "income": "आम्दानी",
+    "expense": "खर्च",
+    "all": "सबै",
+    "filterType": "प्रकार",
+    "filterCategory": "श्रेणी"
+  },
+  "transactionForm": {
+    "newTitle": "नयाँ कारोबार",
+    "editTitle": "कारोबार सम्पादन गर्नुहोस्",
+    "type": "प्रकार",
+    "amount": "रकम",
+    "category": "श्रेणी",
+    "date": "मिति",
+    "description": "विवरण",
+    "receiptUrl": "रसिद URL (वैकल्पिक)",
+    "cancel": "रद्द गर्नुहोस्",
+    "add": "कारोबार थप्नुहोस्",
+    "update": "अपडेट गर्नुहोस्",
+    "saving": "सुरक्षित गर्दै..."
+  },
+  "login": {
+    "title": "लगइन",
+    "email": "इमेल",
+    "password": "पासवर्ड",
+    "submit": "लगइन",
+    "loggingIn": "लगइन हुँदैछ...",
+    "emailRequired": "इमेल आवश्यक छ",
+    "emailInvalid": "मान्य इमेल प्रविष्ट गर्नुहोस्",
+    "passwordRequired": "पासवर्ड आवश्यक छ",
+    "passwordMinLength": "पासवर्ड कम्तीमा ६ अक्षरको हुनुपर्छ"
+  },
+  "validation": {
+    "required": "यो फिल्ड आवश्यक छ",
+    "amountInvalid": "रकम ० भन्दा बढी हुनुपर्छ",
+    "amountExceeded": "रकम १०,००,००० भन्दा बढी हुन सक्दैन",
+    "futureExpenseDate": "खर्चको मिति भविष्यमा हुन सक्दैन"
+  },
+  "language": {
+    "select": "भाषा",
+    "en": "English",
+    "de": "Deutsch",
+    "fr": "Français",
+    "ne": "नेपाली"
+  }
+}
