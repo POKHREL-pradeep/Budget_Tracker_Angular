@@ -1,0 +1,66 @@
+{
+  "dashboard": {
+    "title": "Budget Tracker",
+    "balance": "Balance",
+    "income": "Income",
+    "expenses": "Expenses",
+    "recentEntries": "Recent Entries",
+    "noEntries": "No entries yet.",
+    "logout": "Logout",
+    "transactions": "Transactions"
+  },
+  "transactions": {
+    "title": "Transactions",
+    "addNew": "Add Transaction",
+    "empty": "No transactions yet — add one!",
+    "date": "Date",
+    "description": "Description",
+    "category": "Category",
+    "type": "Type",
+    "amount": "Amount",
+    "actions": "Actions",
+    "income": "Income",
+    "expense": "Expense",
+    "all": "All",
+    "filterType": "Type",
+    "filterCategory": "Category"
+  },
+  "transactionForm": {
+    "newTitle": "New Transaction",
+    "editTitle": "Edit Transaction",
+    "type": "Type",
+    "amount": "Amount",
+    "category": "Category",
+    "date": "Date",
+    "description": "Description",
+    "receiptUrl": "Receipt URL (optional)",
+    "cancel": "Cancel",
+    "add": "Add Transaction",
+    "update": "Update",
+    "saving": "Saving..."
+  },
+  "login": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Login",
+    "loggingIn": "Logging in...",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Enter a valid email",
+    "passwordRequired": "Password is required",
+    "passwordMinLength": "Password must be at least 6 characters"
+  },
+  "validation": {
+    "required": "This field is required",
+    "amountInvalid": "Amount must be greater than 0",
+    "amountExceeded": "Amount cannot exceed 1,000,000",
+    "futureExpenseDate": "Expense date cannot be in the future"
+  },
+  "language": {
+    "select": "Language",
+    "en": "English",
+    "de": "Deutsch",
+    "fr": "Français",
+    "ne": "नेपाली"
+  }
+}
