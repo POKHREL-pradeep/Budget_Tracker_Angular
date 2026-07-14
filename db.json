@@ -84,6 +84,16 @@
       "receiptUrl": "",
       "userId": 1,
       "id": 4
+    },
+    {
+      "type": "income",
+      "amount": 600,
+      "categoryId": 5,
+      "date": "2026-07-12",
+      "description": "This is for the transportation services edited",
+      "receiptUrl": "",
+      "userId": 1,
+      "id": 5
     }
   ]
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectorRef, DestroyRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,15 +11,11 @@ import {
   amountValidator,
   expenseDateValidator,
 } from '../../../core/validators/transaction.validators';
-
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-transaction-form',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    TranslocoModule,
-  ],
+  imports: [CommonModule, ReactiveFormsModule, TranslocoModule],
   templateUrl: './transaction-form.html',
   styleUrl: './transaction-form.scss',
 })
@@ -28,6 +24,7 @@ export class TransactionForm implements OnInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private cdr = inject(ChangeDetectorRef);
+  private destroyRef = inject(DestroyRef);
   private transactionService = inject(TransactionService);
   private categoryService = inject(CategoryService);
   private authService = inject(AuthService);
@@ -63,11 +60,14 @@ export class TransactionForm implements OnInit {
   }
 
   private loadCategories(): void {
-    this.categoryService.getAll().subscribe({
-      next: (categories) => {
-        this.categories = categories;
-      },
-    });
+    this.categoryService
+      .getAll()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (categories) => {
+          this.categories = categories;
+        },
+      });
   }
 
   private checkEditMode(): void {
@@ -83,26 +83,29 @@ export class TransactionForm implements OnInit {
   }
 
   private loadTransaction(id: number): void {
-    this.transactionService.getById(id).subscribe({
-      next: (transaction) => {
-        this.form.patchValue({
-          type: transaction.type,
-          amount: transaction.amount,
-          categoryId: Number(transaction.categoryId),
-          date: transaction.date,
-          description: transaction.description,
-          receiptUrl: transaction.receiptUrl,
-        });
-        this.isFetchingData = false;
-        this.cdr.detectChanges();
-      },
-      error: (err) => {
-        console.error('loadTransaction error:', err);
-        this.isFetchingData = false;
-        this.cdr.detectChanges();
-        this.router.navigate(['/transactions']);
-      },
-    });
+    this.transactionService
+      .getById(id)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (transaction) => {
+          this.form.patchValue({
+            type: transaction.type,
+            amount: transaction.amount,
+            categoryId: Number(transaction.categoryId),
+            date: transaction.date,
+            description: transaction.description,
+            receiptUrl: transaction.receiptUrl,
+          });
+          this.isFetchingData = false;
+          this.cdr.detectChanges();
+        },
+        error: (err) => {
+          console.error('loadTransaction error:', err);
+          this.isFetchingData = false;
+          this.cdr.detectChanges();
+          this.router.navigate(['/transactions']);
+        },
+      });
   }
 
   onSubmit(): void {
@@ -118,9 +121,7 @@ export class TransactionForm implements OnInit {
     const formValue = this.form.value;
 
     const date =
-      formValue.date instanceof Date
-        ? formValue.date.toISOString().split('T')[0]
-        : formValue.date;
+      formValue.date instanceof Date ? formValue.date.toISOString().split('T')[0] : formValue.date;
 
     const payload = {
       ...formValue,
@@ -134,7 +135,7 @@ export class TransactionForm implements OnInit {
         ? this.transactionService.update(this.editId, payload)
         : this.transactionService.create(payload);
 
-    request$.subscribe({
+    request$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: () => {
         this.isLoading = false;
         this.router.navigate(['/transactions']);
