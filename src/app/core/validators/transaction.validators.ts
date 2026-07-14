@@ -3,7 +3,7 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 export const amountValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   const value = Number(control.value);
 
-  if (control.value === null || control.value === undefined || control.value === '') {
+  if (control.value === null) {
     return null;
   }
 
