@@ -10,10 +10,10 @@ export const amountValidator: ValidatorFn = (control: AbstractControl): Validati
   if (isNaN(value)) {
     return { invalidAmount: 'Amount must be a number' };
   }
-  if (value <= 0) {
+  else if (value <= 0) {
     return { invalidAmount: 'Amount must be greater than 0' };
   }
-  if (value > 1_000_000) {
+  else if (value > 1_000_000) {
     return { invalidAmount: 'Amount cannot exceed 1,000,000' };
   }
 
