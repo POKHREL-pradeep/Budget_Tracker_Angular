@@ -1,6 +1,6 @@
 import { Component, OnInit, inject, ChangeDetectorRef, DestroyRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { Category } from '../../../core/models/category.model';
@@ -150,7 +150,7 @@ export class TransactionForm implements OnInit {
     this.router.navigate(['/transactions']);
   }
 
-  get f() {
+  get f(): { [key: string]: AbstractControl } {
     return this.form.controls;
   }
 }

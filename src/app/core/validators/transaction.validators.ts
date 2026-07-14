@@ -33,7 +33,7 @@ export const expenseDateValidator: ValidatorFn = (
     const selectedDate = new Date(date);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    console.log('comparing:', selectedDate, '>', today, '=', selectedDate > today);
+
 
 
     if (selectedDate > today) {
