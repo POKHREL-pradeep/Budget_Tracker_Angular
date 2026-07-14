@@ -7,13 +7,43 @@
       "name": "Test User"
     }
   ],
-"categories": [
-  { "id": 1, "name": "Salary", "type": "income", "color": "#4CAF50", "icon": "attach_money" },
-  { "id": 2, "name": "Freelance", "type": "income", "color": "#8BC34A", "icon": "work" },
-  { "id": 3, "name": "Groceries", "type": "expense", "color": "#F44336", "icon": "shopping_cart" },
-  { "id": 4, "name": "Rent", "type": "expense", "color": "#E91E63", "icon": "home" },
-  { "id": 5, "name": "Transport", "type": "expense", "color": "#FF9800", "icon": "directions_bus" }
-],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Salary",
+      "type": "income",
+      "color": "#4CAF50",
+      "icon": "attach_money"
+    },
+    {
+      "id": 2,
+      "name": "Freelance",
+      "type": "income",
+      "color": "#8BC34A",
+      "icon": "work"
+    },
+    {
+      "id": 3,
+      "name": "Groceries",
+      "type": "expense",
+      "color": "#F44336",
+      "icon": "shopping_cart"
+    },
+    {
+      "id": 4,
+      "name": "Rent",
+      "type": "expense",
+      "color": "#E91E63",
+      "icon": "home"
+    },
+    {
+      "id": 5,
+      "name": "Transport",
+      "type": "expense",
+      "color": "#FF9800",
+      "icon": "directions_bus"
+    }
+  ],
   "transactions": [
     {
       "id": 1,
@@ -30,11 +60,40 @@
       "userId": 1,
       "categoryId": 1,
       "type": "income",
-      "amount": 45000,
+      "amount": 450000,
       "date": "2026-06-01",
       "description": "June salary",
       "receiptUrl": ""
+    },
+    {
+      "type": "expense",
+      "amount": 600,
+      "categoryId": 2,
+      "date": "2026-07-05",
+      "description": "This is the new transaction",
+      "receiptUrl": "",
+      "userId": 1,
+      "id": 3
+    },
+    {
+      "type": "income",
+      "amount": 79458,
+      "categoryId": 2,
+      "date": "2026-07-11",
+      "description": "this is second transaction or is it",
+      "receiptUrl": "",
+      "userId": 1,
+      "id": 4
+    },
+    {
+      "type": "income",
+      "amount": 600,
+      "categoryId": 5,
+      "date": "2026-07-12",
+      "description": "This is for the transportation services edited",
+      "receiptUrl": "",
+      "userId": 1,
+      "id": 5
     }
-
   ]
 }

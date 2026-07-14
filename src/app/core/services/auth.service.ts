@@ -43,8 +43,12 @@ export class AuthService {
     return localStorage.getItem(TOKEN_KEY);
   }
 
+  getCurrentUser() {
+  return this.currentUserSubject.getValue();
+}
+
   private setSession(user: User): void {
-   
+
     const fakeToken = btoa(`${user.email}:${Date.now()}`);
     localStorage.setItem(TOKEN_KEY, fakeToken);
     localStorage.setItem(USER_KEY, JSON.stringify(user));
