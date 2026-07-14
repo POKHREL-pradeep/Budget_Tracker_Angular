@@ -1,1 +1,159 @@
-<p>transaction-form works!</p>
+
+<div class="max-w-lg mx-auto px-6 py-8">
+
+  <!-- Header -->
+  <div class="flex items-center gap-3 mb-8">
+    <button type="button" (click)="onCancel()"
+      class="p-1 rounded hover:bg-gray-100 transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600"
+        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+    <h2 class="text-xl font-medium text-gray-900 m-0">
+      {{ (isEditMode ? 'transactionForm.editTitle' : 'transactionForm.newTitle') | transloco }}
+    </h2>
+  </div>
+
+  <!-- Loading -->
+  @if (isFetchingData) {
+    <div class="flex justify-center py-16">
+      <div class="w-8 h-8 border-2 border-gray-200 border-t-gray-800
+        rounded-full animate-spin"></div>
+    </div>
+  }
+
+  <!-- Form -->
+  @if (!isFetchingData) {
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-col gap-5">
+
+      <!-- Type -->
+      <div class="flex flex-col gap-1">
+        <label class="text-sm font-medium text-gray-700">
+          {{ 'transactionForm.type' | transloco }}
+        </label>
+        <select formControlName="type"
+          class="w-full px-3 py-2 border rounded-md text-sm text-gray-900
+          focus:outline-none focus:ring-1 focus:ring-gray-400
+          bg-white appearance-none"
+          [class.border-red-400]="f['type'].hasError('required') && f['type'].touched"
+          [class.border-gray-300]="!(f['type'].hasError('required') && f['type'].touched)">
+          <option value="" disabled>Select type</option>
+          <option value="income">{{ 'transactions.income' | transloco }}</option>
+          <option value="expense">{{ 'transactions.expense' | transloco }}</option>
+        </select>
+        @if (f['type'].hasError('required') && f['type'].touched) {
+          <p class="text-red-500 text-xs mt-0.5">{{ 'validation.required' | transloco }}</p>
+        }
+      </div>
+
+      <!-- Amount -->
+      <div class="flex flex-col gap-1">
+        <label class="text-sm font-medium text-gray-700">
+          {{ 'transactionForm.amount' | transloco }} (Nu.)
+        </label>
+        <input type="number" formControlName="amount"
+          class="w-full px-3 py-2 border rounded-md text-sm text-gray-900
+          focus:outline-none focus:ring-1 focus:ring-gray-400"
+          [class.border-red-400]="f['amount'].invalid && f['amount'].touched"
+          [class.border-gray-300]="!(f['amount'].invalid && f['amount'].touched)" />
+        @if (f['amount'].hasError('required') && f['amount'].touched) {
+          <p class="text-red-500 text-xs mt-0.5">{{ 'validation.required' | transloco }}</p>
+        }
+        @if (f['amount'].hasError('invalidAmount') && f['amount'].touched) {
+          <p class="text-red-500 text-xs mt-0.5">
+            {{ f['amount'].getError('invalidAmount') }}
+          </p>
+        }
+      </div>
+
+      <!-- Category -->
+      <div class="flex flex-col gap-1">
+        <label class="text-sm font-medium text-gray-700">
+          {{ 'transactionForm.category' | transloco }}
+        </label>
+        <select formControlName="categoryId"
+          class="w-full px-3 py-2 border rounded-md text-sm text-gray-900
+          focus:outline-none focus:ring-1 focus:ring-gray-400 bg-white"
+          [class.border-red-400]="f['categoryId'].hasError('required') && f['categoryId'].touched"
+          [class.border-gray-300]="!(f['categoryId'].hasError('required') && f['categoryId'].touched)">
+          <option value="" disabled>Select category</option>
+          @for (category of categories; track category.id) {
+            <option [value]="category.id">{{ category.name }}</option>
+          }
+        </select>
+        @if (f['categoryId'].hasError('required') && f['categoryId'].touched) {
+          <p class="text-red-500 text-xs mt-0.5">{{ 'validation.required' | transloco }}</p>
+        }
+      </div>
+
+      <!-- Date -->
+      <div class="flex flex-col gap-1">
+        <label class="text-sm font-medium text-gray-700">
+          {{ 'transactionForm.date' | transloco }}
+        </label>
+        <input type="date" formControlName="date"
+          class="w-full px-3 py-2 border rounded-md text-sm text-gray-900
+          focus:outline-none focus:ring-1 focus:ring-gray-400"
+          [class.border-red-400]="(f['date'].hasError('required') && f['date'].touched)
+            || (form.hasError('futureExpenseDate') && isSubmitted)"
+          [class.border-gray-300]="!((f['date'].hasError('required') && f['date'].touched)
+            || (form.hasError('futureExpenseDate') && isSubmitted))" />
+        @if (f['date'].hasError('required') && f['date'].touched) {
+          <p class="text-red-500 text-xs mt-0.5">{{ 'validation.required' | transloco }}</p>
+        }
+        @if (form.hasError('futureExpenseDate') && (f['date'].touched || isSubmitted)) {
+          <p class="text-red-500 text-xs mt-0.5">
+            {{ 'validation.futureExpenseDate' | transloco }}
+          </p>
+        }
+      </div>
+
+      <!-- Description -->
+      <div class="flex flex-col gap-1">
+        <label class="text-sm font-medium text-gray-700">
+          {{ 'transactionForm.description' | transloco }}
+        </label>
+        <input type="text" formControlName="description"
+          class="w-full px-3 py-2 border rounded-md text-sm text-gray-900
+          focus:outline-none focus:ring-1 focus:ring-gray-400"
+          [class.border-red-400]="f['description'].hasError('required') && f['description'].touched"
+          [class.border-gray-300]="!(f['description'].hasError('required') && f['description'].touched)" />
+        @if (f['description'].hasError('required') && f['description'].touched) {
+          <p class="text-red-500 text-xs mt-0.5">{{ 'validation.required' | transloco }}</p>
+        }
+      </div>
+
+      <!-- Receipt URL -->
+      <div class="flex flex-col gap-1">
+        <label class="text-sm font-medium text-gray-700">
+          {{ 'transactionForm.receiptUrl' | transloco }}
+        </label>
+        <input type="text" formControlName="receiptUrl"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md
+          text-sm text-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-400" />
+      </div>
+
+      <!-- Actions -->
+      <div class="flex justify-end gap-3 pt-2">
+        <button type="button" (click)="onCancel()"
+          class="px-4 py-2 text-sm font-medium text-gray-700 border
+          border-gray-300 rounded-md hover:bg-gray-50 transition-colors">
+          {{ 'transactionForm.cancel' | transloco }}
+        </button>
+        <button type="submit" [disabled]="isLoading"
+          class="px-4 py-2 text-sm font-medium text-white bg-gray-900
+          rounded-md hover:bg-gray-700 disabled:opacity-50
+          disabled:cursor-not-allowed transition-colors">
+          {{ isLoading
+            ? ('transactionForm.saving' | transloco)
+            : (isEditMode
+              ? ('transactionForm.update' | transloco)
+              : ('transactionForm.add' | transloco)) }}
+        </button>
+      </div>
+
+    </form>
+  }
+</div>
