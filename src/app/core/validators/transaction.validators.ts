@@ -7,7 +7,7 @@ export const amountValidator: ValidatorFn = (control: AbstractControl): Validati
     return null;
   }
 
-  if (isNaN(value)) {
+  else if (isNaN(value)) {
     return { invalidAmount: 'Amount must be a number' };
   }
   else if (value <= 0) {
